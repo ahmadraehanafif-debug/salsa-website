@@ -1,0 +1,129 @@
+*{box-sizing:border-box}
+:root{
+  --rose:#5b243d; --rose-dark:#2a101d; --pink:#a95b78; --pink-soft:#d9a6b8;
+  --sage:#738b72; --cream:#fff7ef; --ink:#2b1b24; --gold:#c8a66a;
+}
+html{overflow-x:hidden}
+html,body{margin:0;min-height:100%;font-family:"DM Sans",sans-serif;color:var(--cream);background:var(--rose-dark)}
+body{overflow-x:hidden}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.app{min-height:100vh;position:relative;overflow:hidden;overflow:clip}
+.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:34px 18px;position:relative;overflow:hidden;overflow:clip}
+.screen::before{content:"";position:absolute;inset:-20%;background:
+ radial-gradient(circle at 20% 20%,rgba(169,91,120,.22),transparent 28%),
+ radial-gradient(circle at 80% 70%,rgba(115,139,114,.14),transparent 30%);
+pointer-events:none}
+.card{width:min(880px,100%);position:relative;z-index:2;background:rgba(255,247,239,.08);
+border:1px solid rgba(255,247,239,.17);border-radius:30px;padding:38px;
+box-shadow:0 30px 90px rgba(0,0,0,.3);backdrop-filter:blur(14px)}
+.paper{width:min(720px,100%);position:relative;z-index:2;background:var(--cream);color:var(--ink);border-radius:24px;padding:34px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;color:var(--pink-soft);margin-bottom:12px}
+h1,h2{font-family:"Cormorant Garamond",serif;margin:0 0 16px;line-height:.95}
+h1{font-size:clamp(3.2rem,9vw,6.7rem)}
+h2{font-size:clamp(2.2rem,6vw,4rem)}
+p{line-height:1.75;max-width:720px}
+.script{font-family:"Parisienne",cursive}
+.muted{opacity:.75}
+.center{text-align:center}
+.center p{margin-left:auto;margin-right:auto}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.btn{border:0;border-radius:999px;padding:13px 24px;background:var(--cream);color:var(--rose-dark);font-weight:600;transition:.25s;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--cream);border:1px solid rgba(255,247,239,.3)}
+.btn.sage{background:var(--sage);color:white}
+.btn.gold{background:linear-gradient(135deg,#e0c58a,#b89252);color:#241713}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.choice,.activity{border:1px solid rgba(255,247,239,.16);background:rgba(255,255,255,.06);color:var(--cream);border-radius:20px;padding:18px;text-align:left;transition:.2s}
+.choice:hover,.activity:hover,.choice.selected,.activity.selected{transform:translateY(-2px);border-color:var(--pink-soft);background:rgba(169,91,120,.22)}
+.field{margin:20px 0}
+label{display:block;margin-bottom:8px;font-weight:600}
+input[type=date],textarea{width:100%;border:1px solid rgba(43,27,36,.15);border-radius:16px;padding:14px;background:#fff;color:var(--ink);outline:none}
+textarea{min-height:130px;resize:vertical}
+.field.dark input,.field.dark textarea{background:rgba(255,255,255,.08);border-color:rgba(255,247,239,.18);color:var(--cream)}
+.small{font-size:.9rem;opacity:.72}
+.counter{font-size:.85rem;opacity:.7;margin-bottom:18px}
+.polaroid-wrap{display:flex;justify-content:center;min-height:420px;align-items:center}
+.polaroid{width:fit-content;max-width:min(560px,100%);background:#fff;color:#3a2930;padding:14px 14px 38px;box-shadow:0 25px 60px rgba(0,0,0,.35);transform:rotate(-2deg);animation:photoIn .55s ease}
+.photo-frame{background:#efe6e2;display:flex;align-items:center;justify-content:center}
+.photo-frame.missing{width:min(420px,78vw);height:300px}
+.photo-missing{display:none;text-align:center;color:#8a6f78;font-size:.95rem;padding:16px}
+.photo-frame.missing .photo-missing{display:block}
+.photo-missing small{display:block;margin-top:6px;opacity:.7;word-break:break-all}
+.polaroid img,.polaroid video{display:block;max-width:100%;max-height:min(58vh,560px);width:auto;height:auto}
+.caption{text-align:center;font-family:"Cormorant Garamond",serif;font-size:1.25rem;margin-top:14px}
+@keyframes photoIn{from{opacity:0;transform:translateY(30px) rotate(-8deg) scale(.96)}to{opacity:1;transform:translateY(0) rotate(-2deg) scale(1)}}
+.paper .line{height:1px;background:rgba(43,27,36,.15);margin:22px 0}
+.signature-box{position:relative;min-height:190px;border:1px dashed rgba(43,27,36,.25);border-radius:18px;display:flex;align-items:center;justify-content:center;margin:20px 0;background:rgba(255,255,255,.5)}
+.sig-placeholder{opacity:.55;animation:nudge 1.6s ease-in-out infinite}
+.sig-wrap{position:relative;display:inline-block;padding:0 12px}
+.signature{font-family:"Parisienne",cursive;font-size:4rem;line-height:1.25;color:#3a1b2b;white-space:nowrap;clip-path:inset(-20% 100% -20% -5%)}
+.sig-wrap.done .signature{clip-path:none}
+.sig-line{display:block;width:100%;height:auto;margin-top:-14px;overflow:visible}
+.sig-line path{fill:none;stroke:#3a1b2b;stroke-width:2.2;stroke-linecap:round}
+.pen{position:absolute;left:0;top:0;width:44px;height:44px;opacity:0;pointer-events:none;transform-origin:2px 42px;transition:opacity .25s;filter:drop-shadow(2px 4px 3px rgba(0,0,0,.25))}
+.sig-wrap.done .pen{opacity:0}
+.stamp{position:absolute;right:14px;bottom:12px;border:3px solid #b3405f;color:#b3405f;font-weight:700;letter-spacing:.14em;padding:5px 12px;border-radius:10px;opacity:0;transform:rotate(-12deg)}
+.stamp.show{opacity:.88;animation:stamp .45s cubic-bezier(.2,1.5,.4,1)}
+@keyframes stamp{from{opacity:0;transform:rotate(-12deg) scale(2.6)}}
+.signing{font-style:italic;opacity:.7;margin:0}
+.spark{position:fixed;z-index:30;pointer-events:none;font-size:20px;margin:-10px 0 0 -10px;animation:spark 1s ease-out forwards}
+@keyframes spark{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(.5);opacity:0}}
+.card,.paper{animation:pop .55s cubic-bezier(.2,.9,.3,1.15)}
+.quiet .card,.quiet .paper{animation:none}
+@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.97)}}
+.btn:active{transform:scale(.95)}
+.decor{animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(6deg)}}
+@keyframes nudge{50%{transform:translateY(-4px)}}
+.face{font-size:3.4rem;line-height:1;margin-bottom:10px;animation:wiggle 1.2s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.note{margin-top:18px;padding:16px 18px;border-radius:18px;background:rgba(200,166,106,.12);border:1px dashed rgba(224,197,138,.45)}
+.note-title{font-weight:600;margin-bottom:6px;color:#f0dcae}
+.note ul{margin:0;padding-left:18px;line-height:1.8}
+.day-hint{min-height:1.4em;margin:10px 0 0;font-size:.92rem;color:#f0dcae}
+.progress{height:5px;background:rgba(255,255,255,.12);border-radius:10px;overflow:hidden;margin:15px 0 25px}
+.progress span{display:block;height:100%;background:var(--pink-soft);transition:.35s}
+.decor{position:absolute;pointer-events:none;opacity:.7}
+.flower{font-size:3rem}.teddy{font-size:4rem}
+.petal{position:absolute;top:-60px;animation:fall linear forwards;will-change:transform}
+.petal .sway{display:block;width:100%;height:100%;animation:sway ease-in-out infinite alternate}
+.petal svg{display:block;width:100%;height:100%;animation:spin linear infinite}
+@keyframes fall{to{transform:translateY(calc(100vh + 130px))}}
+@keyframes sway{from{transform:translateX(-26px)}to{transform:translateX(26px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:20;background:#fff;color:#2a101d;padding:12px 18px;border-radius:999px;box-shadow:0 15px 40px rgba(0,0,0,.25);animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+@media(max-width:640px){
+ .screen{padding:20px 14px}.card,.paper{padding:24px 18px;border-radius:22px}
+ .grid{grid-template-columns:1fr}.polaroid-wrap{min-height:360px}.photo-frame.missing{height:240px}
+ .signature{font-size:2.6rem}.stamp{font-size:.8rem;right:8px;bottom:8px}
+}
+.reveal{animation:reveal .9s ease backwards}
+@keyframes reveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.auto-card{transition:opacity .7s ease,transform .7s ease}
+.auto-card.leaving{opacity:0;transform:translateY(-14px)}
+.petals{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.field.dark input[type=date]{color-scheme:dark}
+.btn:focus-visible,.choice:focus-visible,.activity:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.music-btn{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:25;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,247,239,.3);background:rgba(42,16,29,.6);backdrop-filter:blur(8px);font-size:1.2rem;line-height:1;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.music-btn.playing{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.mail-wrap{position:relative;z-index:2;text-align:center;transition:opacity .5s ease}
+.mail-wrap.leaving{opacity:0}
+.mail-wrap .eyebrow{margin-bottom:26px;transition:opacity .3s}
+.mail-wrap .hint{margin:22px auto 0;font-size:.95rem;opacity:.8;animation:nudge 1.6s ease-in-out infinite;transition:opacity .3s}
+.mail-wrap.opened .hint,.mail-wrap.opened .eyebrow{opacity:0}
+.mailbox{display:block;margin:0 auto;padding:0;border:0;background:none;width:min(250px,60vw);animation:hop 2.6s ease-in-out infinite;-webkit-tap-highlight-color:transparent}
+.mailbox svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 28px rgba(0,0,0,.35))}
+.mailbox .door{transform-origin:120px 172px;transition:transform .5s cubic-bezier(.3,1.4,.5,1),filter .5s}
+.mailbox .flag{transform-origin:199px 152px;transform:rotate(78deg);transition:transform .55s .1s cubic-bezier(.3,1.7,.5,1)}
+.mailbox .env{transform-origin:120px 135px;transform:scale(.25);opacity:0}
+.mailbox.open{animation:none}
+.mailbox.open .door{transform:scaleY(-.3);filter:brightness(.72)}
+.mailbox.open .flag{transform:rotate(0)}
+.mailbox.open .env{animation:envOut 1.4s .35s cubic-bezier(.3,.9,.3,1) forwards}
+@keyframes envOut{0%{transform:translate(0,0) scale(.25);opacity:0}15%{opacity:1}55%{transform:translate(0,-78px) scale(.95) rotate(-8deg);opacity:1}100%{transform:translate(0,-34px) scale(2) rotate(3deg);opacity:1}}
+@keyframes hop{0%,34%,100%{transform:none}8%{transform:translateY(-7px) rotate(-3deg)}17%{transform:translateY(0) rotate(3deg)}26%{transform:translateY(-3px) rotate(-1.500deg)}}
+.mailbox:focus-visible{outline:2px solid var(--gold);outline-offset:8px;border-radius:20px}
